@@ -1,8 +1,8 @@
-tmux_conf_theme_status_right=' #{username}#{root} '
+tmux_conf_theme_status_right='#{prefix}  | #{username}#{root} '
 
-tmux_conf_theme_status_right_fg='brightblack'
-tmux_conf_theme_status_right_bg='yellow'
-tmux_conf_theme_status_right_attr='none'
+tmux_conf_theme_status_right_fg='brightcyan,brightblack'
+tmux_conf_theme_status_right_bg='black,yellow'
+tmux_conf_theme_status_right_attr='none,none'
 
 tmux_conf_theme_status_left_fg='brightblack'
 tmux_conf_theme_status_left_bg='yellow'
@@ -17,3 +17,6 @@ tmux_conf_theme_window_status_last_bg='black'
 
 tmux_conf_theme_window_status_fg='brightgreen'
 tmux_conf_theme_window_status_bg='black'
+
+set-option -g history-limit 100000
+set-option -g repeat-time 0
