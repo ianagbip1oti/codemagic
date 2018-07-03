@@ -4,11 +4,9 @@ RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    bash-completion curl git locales locales-all procps python3-pip silversearcher-ag sudo tmux vim \
- && pip3 install powerline-status
+    bash-completion curl git locales locales-all procps silversearcher-ag sudo tmux vim
 
 ENV EDITOR=/usr/bin/vim
-ENV POWERLINE_REPOSITORY_ROOT=/usr/local/lib/python3.5/dist-packages
 
 RUN useradd -ms /bin/bash hacker \
  && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
