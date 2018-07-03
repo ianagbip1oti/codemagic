@@ -3,6 +3,10 @@ execute pathogen#infect()
 
 set noshowmode
 
+set expandtab
+set softtabstop=2
+set shiftwidth=2
+
 let g:ctrlp_show_hidden=1
 
 " The Silver Searcher
