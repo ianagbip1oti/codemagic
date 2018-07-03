@@ -4,7 +4,7 @@ RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    curl git locales locales-all procps python3-pip silversearcher-ag sudo tmux vim \
+    bash-completion curl git locales locales-all procps python3-pip silversearcher-ag sudo tmux vim \
  && pip3 install powerline-status
 
 ENV POWERLINE_REPOSITORY_ROOT=/usr/local/lib/python3.5/dist-packages
@@ -13,7 +13,7 @@ RUN useradd -ms /bin/bash hacker \
  && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
 
 RUN git config --global --add auto.ui true \
- && git config --global credential.helper store
+ && git config --global --add credential.helper store
 
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
