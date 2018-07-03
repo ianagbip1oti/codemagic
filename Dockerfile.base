@@ -27,7 +27,7 @@ RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 https://github.com/tpope/vim-sensible \
     /home/hacker/.vim/bundle/vim-sensible \
  && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
-    /home/hacker/.vim/bundle/vim-sleuth
+    /home/hacker/.vim/bundle/vim-sleuth \
  && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
     /home/hacker/.vim/bundle/vim-unimpaired
 
