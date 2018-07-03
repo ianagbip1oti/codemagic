@@ -7,6 +7,8 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+set directory=~/.vim/swp//
+
 let g:ctrlp_show_hidden=1
 
 " The Silver Searcher
