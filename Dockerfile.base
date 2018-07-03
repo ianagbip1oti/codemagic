@@ -1,0 +1,29 @@
+FROM debian:stretch
+
+RUN apt-get update \
+ && apt-get install -y unattended-upgrades \
+ && unattended-upgrades -d \
+ && apt-get install -y curl git locales locales-all procps python3-pip silversearcher-ag sudo tmux vim-nox \
+ && pip3 install powerline-status
+
+ENV POWERLINE_REPOSITORY_ROOT=/usr/local/lib/python3.5/dist-packages
+
+RUN useradd -ms /bin/bash hacker \
+ && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
+
+RUN git config --global --add auto.ui true
+
+RUN mkdir -p /home/hacker/.vim \
+ && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen /home/hacker/.vim \
+ && git clone --depth 1 --branch v1.2 https://github.com/tpope/vim-sensible /home/hacker/.vim/bundle/vim-sensible \
+ && git clone --depth 1 --branch 1.80 https://github.com/ctrlpvim/ctrlp.vim /home/hacker/.vim/bundle/ctrlp.vim \
+ && git clone --depth 1 --branch master https://github.com/altercation/vim-colors-solarized.git /home/hacker/.vim/bundle/vim-colors-solarized.git
+
+COPY dotfiles/ /home/hacker/
+
+RUN mkdir /workspace
+WORKDIR /workspace
+
+ENV LC_ALL en_US.UTF-8
+
+CMD tmux
