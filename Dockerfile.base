@@ -18,14 +18,18 @@ RUN git config --global --add auto.ui true \
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
     /home/hacker/.vim \
- && git clone --depth 1 --branch v1.2 https://github.com/tpope/vim-sensible \
-    /home/hacker/.vim/bundle/vim-sensible \
  && git clone --depth 1 --branch 1.80 https://github.com/ctrlpvim/ctrlp.vim \
     /home/hacker/.vim/bundle/ctrlp.vim \
- && git clone --depth 1 --branch master https://github.com/altercation/vim-colors-solarized.git \
+ && git clone --depth 1 https://github.com/itchyny/lightline.vim \
+    /home/hacker/.vim/bundle/lightline.vim \
+ && git clone --depth 1 https://github.com/altercation/vim-colors-solarized.git \
     /home/hacker/.vim/bundle/vim-colors-solarized.git \
- && git clone --depth 1 --branch master https://github.com/itchyny/lightline.vim \
-    /home/hacker/.vim/bundle/lightline.vim
+ && git clone --depth 1 https://github.com/tpope/vim-sensible \
+    /home/hacker/.vim/bundle/vim-sensible \
+ && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
+    /home/hacker/.vim/bundle/vim-sleuth
+ && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
+    /home/hacker/.vim/bundle/vim-unimpaired
 
 COPY dotfiles/ /home/hacker/
 
