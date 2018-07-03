@@ -1,8 +1,7 @@
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
 
 execute pathogen#infect()
+
+set noshowmode
 
 let g:ctrlp_show_hidden=1
 
@@ -18,8 +17,12 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-let g:solarized_termtran=1
+let g:solarized_termtrans=1
 
 set background=dark
 colorscheme solarized
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
