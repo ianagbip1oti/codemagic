@@ -12,8 +12,7 @@ ENV POWERLINE_REPOSITORY_ROOT=/usr/local/lib/python3.5/dist-packages
 RUN useradd -ms /bin/bash hacker \
  && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
 
-RUN git config --global --add auto.ui true \
- && git config --global --add credential.helper store
+RUN git config --global --add auto.ui true
 
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
