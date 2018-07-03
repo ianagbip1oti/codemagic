@@ -18,7 +18,7 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-let g:trans_term=1
+let g:solarized_termtran=1
 
 set background=dark
 colorscheme solarized
