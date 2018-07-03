@@ -18,6 +18,8 @@ RUN git config --global --add auto.ui true \
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
     /home/hacker/.vim \
+ && mkdir -p /home/hacker/.vim/swp \
+ && chown hacker:hacker /home/hacker/.vim/swp \
  && git clone --depth 1 --branch 1.80 https://github.com/ctrlpvim/ctrlp.vim \
     /home/hacker/.vim/bundle/ctrlp.vim \
  && git clone --depth 1 https://github.com/itchyny/lightline.vim \
@@ -30,6 +32,9 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim/bundle/vim-sleuth \
  && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
     /home/hacker/.vim/bundle/vim-unimpaired
+
+RUN git clone --depth 1 https://github.com/riobard/bash-powerline.git \
+    /home/hacker/.bash-powerline
 
 COPY dotfiles/ /home/hacker/
 
