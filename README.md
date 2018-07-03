@@ -13,3 +13,7 @@ To run:
  
 Supported environments can be found by checking what `Dockerfile`'s are available. e.g., `Dockerfile.java8` is used
 when the environment is given as `java8`
+
+The first run will be slow as it builds the images. Once cached subsequent start ups will be faster.
+
+Uses powerline, so you should have powerline fonts available
