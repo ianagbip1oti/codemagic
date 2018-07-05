@@ -11,7 +11,8 @@ ENV EDITOR=/usr/bin/vim
 RUN useradd -ms /bin/bash hacker \
  && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
 
-RUN git config --global --add auto.ui true
+RUN git config --global --add auto.ui true \
+ && git config --global credential.helper cache --timeout 86400
 
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
