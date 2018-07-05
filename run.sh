@@ -13,4 +13,5 @@ docker run -it \
   -v $workspace/.m2:/home/hacker/.m2 \
   -e "TERM=xterm-256color" \
   --user=hacker \
+  --hostname="$image.codemagic" \
   codemagic:$image
