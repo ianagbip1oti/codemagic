@@ -1,0 +1,7 @@
+FROM codemagic:base
+
+RUN apt-get update \
+ && apt-get install -y gnupg \
+ && curl -sSL https://deb.nodesource.com/setup_8.x | bash - \
+ && apt-get install -y nodejs
+
