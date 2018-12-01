@@ -12,6 +12,9 @@ case $image in
   java*)
     extra_args="-v $workspace/.m2:/home/hacker/.m2"
     ;;
+  ruby*)
+    extra_args="-v $workspace/.rbenv/versions:/home/hacker/.rbenv/versions"
+    ;;
 esac
 
 docker run -it \
