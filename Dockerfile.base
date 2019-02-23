@@ -4,7 +4,7 @@ RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    bash-completion build-essential curl git locales locales-all procps ruby-dev silversearcher-ag sudo tmux vim \
+    bash-completion build-essential curl entr git locales locales-all procps ruby-dev silversearcher-ag sudo tmux vim \
  && gem install travis
 
 ENV EDITOR=/usr/bin/vim
