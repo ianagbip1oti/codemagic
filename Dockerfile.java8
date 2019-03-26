@@ -3,3 +3,9 @@ FROM codemagic:base
 RUN apt-get update \
  && apt-get install -y maven openjdk-8-jdk
 
+
+RUN curl -ssL https://services.gradle.org/distributions/gradle-5.3-bin.zip -o gradle-bin.zip \
+ && unzip gradle-bin.zip \
+ && mv gradle-5.3 /opt/gradle \
+ && ln -s /opt/gradle/bin/gradle /usr/bin/gradle
+
