@@ -10,7 +10,7 @@ docker build -f Dockerfile.$image . -t codemagic:$image
 
 case $image in 
   java*)
-    extra_args="-v $workspace/.m2:/home/hacker/.m2"
+    extra_args="-v $workspace/.m2:/home/hacker/.m2 -v $workspace/.gradle:/home/hacker/.gradle"
     ;;
   ruby*)
     extra_args="-v $workspace/.rbenv/versions:/home/hacker/.rbenv/versions"
