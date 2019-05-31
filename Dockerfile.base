@@ -26,6 +26,8 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim/bundle/lightline.vim \
  && git clone --depth 1 https://github.com/altercation/vim-colors-solarized.git \
     /home/hacker/.vim/bundle/vim-colors-solarized.git \
+ && git clone --depth 1 --branch "v3.8.1" https://github.com/sheerun/vim-polyglot \
+    /home/hacker/.vim/bundle/vim-polyglot \
  && git clone --depth 1 https://github.com/tpope/vim-sensible \
     /home/hacker/.vim/bundle/vim-sensible \
  && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
