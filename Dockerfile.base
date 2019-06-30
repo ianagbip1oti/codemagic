@@ -4,8 +4,16 @@ RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    bash-completion build-essential curl entr git locales locales-all procps ruby-dev silversearcher-ag sudo tmux vim \
+    autoconf bash-completion build-essential curl entr git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux vim \
  && gem install travis
+
+RUN mkdir -p /usr/local/src \
+ && git clone https://github.com/universal-ctags/ctags.git /usr/local/src/universal-ctags \
+ && cd /usr/local/src/universal-ctags \
+ && ./autogen.sh \
+ && ./configure \
+ && make \
+ && make install
 
 ENV EDITOR=/usr/bin/vim
 
@@ -26,12 +34,18 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim/bundle/lightline.vim \
  && git clone --depth 1 https://github.com/altercation/vim-colors-solarized.git \
     /home/hacker/.vim/bundle/vim-colors-solarized.git \
+ && git clone --depth 1 https://github.com/ludovicchabant/vim-gutentags.git \
+    /home/hacker/.vim/bundle/vim-gutentags \
+ && git clone --depth 1 https://github.com/takac/vim-hardtime.git \
+    /home/hacker/.vim/bundle/vim-hardtime \
  && git clone --depth 1 --branch "v3.8.1" https://github.com/sheerun/vim-polyglot \
     /home/hacker/.vim/bundle/vim-polyglot \
  && git clone --depth 1 https://github.com/tpope/vim-sensible \
     /home/hacker/.vim/bundle/vim-sensible \
  && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
     /home/hacker/.vim/bundle/vim-sleuth \
+ && git clone --depth 1 --branch "v2.7" https://github.com/majutsushi/tagbar.git \
+    /home/hacker/.vim/bundle/tagbar \
  && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
     /home/hacker/.vim/bundle/vim-unimpaired
 

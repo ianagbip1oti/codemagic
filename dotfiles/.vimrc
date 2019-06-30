@@ -30,5 +30,19 @@ colorscheme solarized
 
 let g:lightline = {
       \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'gutentags', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gutentags': 'gutentags#statusline'
+      \ },
       \ }
 
+let g:hardtime_default_on = 1
+
+nnoremap [b :call g:TagbarOpen()<CR>
+nnoremap ]b :call g:TagbarClose()<CR>
+
+g:gutentags_ctags_tagfile=.git/tags
