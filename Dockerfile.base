@@ -36,7 +36,7 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim/bundle/vim-colors-solarized.git \
  && git clone --depth 1 https://github.com/ludovicchabant/vim-gutentags.git \
     /home/hacker/.vim/bundle/vim-gutentags \
- && git clone --depth 1 https://github.com/takac/vim-hardtime.git \
+ && git clone --depth 1 https://github.com/lstephen/vim-hardtime.git \
     /home/hacker/.vim/bundle/vim-hardtime \
  && git clone --depth 1 --branch "v3.8.1" https://github.com/sheerun/vim-polyglot \
     /home/hacker/.vim/bundle/vim-polyglot \
@@ -44,8 +44,6 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim/bundle/vim-sensible \
  && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
     /home/hacker/.vim/bundle/vim-sleuth \
- && git clone --depth 1 --branch "v2.7" https://github.com/majutsushi/tagbar.git \
-    /home/hacker/.vim/bundle/tagbar \
  && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
     /home/hacker/.vim/bundle/vim-unimpaired
 
