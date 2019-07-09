@@ -33,8 +33,8 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim \
  && mkdir -p /home/hacker/.vim/swp \
  && chown hacker:hacker /home/hacker/.vim/swp \
- && git clone --depth 1 --branch 1.80 https://github.com/ctrlpvim/ctrlp.vim \
-    /home/hacker/.vim/bundle/ctrlp.vim \
+ && git clone --depth 1 https://github.com/junegunn/fzf.vim \
+    /home/hacker/.vim/bundle/fzf.vim \
  && git clone --depth 1 https://github.com/itchyny/lightline.vim \
     /home/hacker/.vim/bundle/lightline.vim \
  && git clone --depth 1 https://github.com/altercation/vim-colors-solarized.git \
