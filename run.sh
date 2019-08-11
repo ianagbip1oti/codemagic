@@ -15,6 +15,8 @@ case $image in
   ruby*)
     extra_args="-v $workspace/.rbenv/versions:/home/hacker/.rbenv/versions"
     ;;
+  mkdocs)
+    extra_args="-p 8000:8000"
 esac
 
 docker run -it \
