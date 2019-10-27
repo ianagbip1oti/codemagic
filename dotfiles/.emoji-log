@@ -3,7 +3,7 @@
 
 # Git Commit, Add all and Push — in one step.
 function gcap() {
-  git add . && git commit -m "$*" && git push
+  git commit -m "$*"
 }
 
 # NEW.
