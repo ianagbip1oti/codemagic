@@ -1,0 +1,4 @@
+FROM codemagic:base
+
+RUN apt-get update \
+ && apt-get install -y tox

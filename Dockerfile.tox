@@ -1,0 +1,16 @@
+FROM codemagic:base
+
+ENV PYENV_ROOT /home/hacker/.pyenv
+
+RUN apt-get update \
+ && apt-get install -y python3 python3-pip \
+                       make build-essential libssl-dev zlib1g-dev libbz2-dev \
+                       libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+                       xz-utils tk-dev libffi-dev liblzma-dev python-openssl git \
+ && curl https://pyenv.run | bash \
+ && pip3 install tox \
+ && chown -R hacker:hacker /home/hacker/.pyenv
+
+RUN echo "export PATH=\"${PYENV_ROOT}/bin:\$PATH\"" >> /home/hacker/.bashrc \
+ && echo "eval \"\$(pyenv init -)\"" >> /home/hacker/.bashrc \
+ && echo "eval \"\$(pyenv virtualenv-init -)\"" >> /home/hacker/.bashrc
