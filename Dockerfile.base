@@ -1,24 +1,10 @@
-FROM debian:stretch
+FROM debian:buster
 
-RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list \
- && apt-get update \
+RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    autoconf bash-completion build-essential curl entr git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux vim \
- && apt-get -t stretch-backports install -y fzf
-
-RUN mkdir -p /usr/local/src \
- && git clone --depth 1 https://github.com/universal-ctags/ctags.git /usr/local/src/universal-ctags \
- && cd /usr/local/src/universal-ctags \
- && ./autogen.sh \
- && ./configure \
- && make \
- && make install
-
-RUN git clone --depth 1 https://github.com/junegunn/fzf.git /usr/local/src/fzf \
- && cd /usr/local/src/fzf \
- && ./install
+    autoconf bash-completion build-essential curl entr fzf git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux universal-ctags vim
 
 ENV EDITOR=/usr/bin/vim
 

@@ -1,7 +1,7 @@
 FROM codemagic:base
 
 RUN apt-get update \
- && apt-get install -y maven openjdk-8-jdk
+ && apt-get install -y maven openjdk-11-jdk
 
 
 RUN curl -ssL https://services.gradle.org/distributions/gradle-5.3-bin.zip -o gradle-bin.zip \
