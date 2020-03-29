@@ -1,0 +1,4 @@
+FROM codemagic:base
+
+RUN curl -fsSL https://get.docker.com | /bin/bash
+RUN usermod -aG docker hacker
