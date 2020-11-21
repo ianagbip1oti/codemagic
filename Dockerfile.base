@@ -1,24 +1,15 @@
-FROM debian:stretch
+FROM debian:bullseye
 
-RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list \
- && apt-get update \
- && apt-get install -y unattended-upgrades \
+#RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list \
+RUN apt-get update
+
+RUN apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    autoconf bash-completion build-essential curl entr git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux vim
+    autoconf bash-completion build-essential curl entr fzf git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux vim
 
-RUN mkdir -p /usr/local/src \
- && git clone --depth 1 https://github.com/universal-ctags/ctags.git /usr/local/src/universal-ctags \
- && cd /usr/local/src/universal-ctags \
- && ./autogen.sh \
- && ./configure \
- && make \
- && make install
-
-RUN git clone --depth 1 --branch 0.19.0 https://github.com/junegunn/fzf.git /usr/local/src/fzf \
- && cd /usr/local/src/fzf \
- && ./install \
- && ln -sf /usr/local/src/fzf/bin/fzf /usr/local/bin/fzf
+RUN apt-get install -y python3 python3-pip \
+ && pip3 install tsktsk
 
 ENV EDITOR=/usr/bin/vim
 
@@ -33,14 +24,14 @@ RUN mkdir -p /home/hacker/.vim \
     /home/hacker/.vim \
  && mkdir -p /home/hacker/.vim/swp \
  && chown hacker:hacker /home/hacker/.vim/swp \
+ && mkdir -p /home/hacker/.vim/bundle/fzf/plugin \
+ && cp /usr/share/doc/fzf/examples/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
  && git clone --depth 1 https://github.com/junegunn/fzf.vim \
     /home/hacker/.vim/bundle/fzf.vim \
  && git clone --depth 1 https://github.com/itchyny/lightline.vim \
     /home/hacker/.vim/bundle/lightline.vim \
  && git clone --depth 1 https://github.com/altercation/vim-colors-solarized.git \
     /home/hacker/.vim/bundle/vim-colors-solarized.git \
- && git clone --depth 1 https://github.com/ludovicchabant/vim-gutentags.git \
-    /home/hacker/.vim/bundle/vim-gutentags \
  && git clone --depth 1 https://github.com/lstephen/vim-hardtime.git \
     /home/hacker/.vim/bundle/vim-hardtime \
  && git clone --depth 1 --branch "v3.8.1" https://github.com/sheerun/vim-polyglot \

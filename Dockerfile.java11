@@ -1,0 +1,10 @@
+FROM codemagic:base
+
+RUN apt-get update \
+ && apt-get install -y maven openjdk-11-jdk
+
+RUN curl -ssL https://services.gradle.org/distributions/gradle-6.0.1-bin.zip -o gradle-bin.zip \
+ && unzip gradle-bin.zip \
+ && mv gradle-6.0.1 /opt/gradle \
+ && ln -s /opt/gradle/bin/gradle /usr/bin/gradle
+
