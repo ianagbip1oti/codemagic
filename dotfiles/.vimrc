@@ -21,3 +21,5 @@ set rtp+=/usr/local/src/fzf
 nnoremap <silent> <C-p> :Files<cr>
 nnoremap <silent> <C-b> :Buffers<cr>
 nnoremap <silent> <C-f> :BLines<cr>
+let g:fzf_layout = { 'down': '40%' }
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
