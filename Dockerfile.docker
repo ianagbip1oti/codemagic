@@ -1,6 +1,7 @@
 FROM codemagic:base
 
-RUN curl -fsSL https://get.docker.com | /bin/bash
+RUN apt-get update \
+ && apt-get install -y docker.io
 RUN usermod -aG docker hacker
 
 CMD sudo chmod 666 /var/run/docker.sock && tmux
