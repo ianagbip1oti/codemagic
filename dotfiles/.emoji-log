@@ -13,17 +13,12 @@ function gnew() {
 
 # IMPROVE.
 function gimp() {
-  gcap "👌 IMPROVE: $@"
+  gcap "👌 IMP: $@"
 }
 
 # FIX.
 function gfix() {
   gcap "🐛 FIX: $@"
-}
-
-# RELEASE.
-function grlz() {
-  gcap "🚀 RELEASE: $@"
 }
 
 # DOC.
@@ -33,5 +28,5 @@ function gdoc() {
 
 # TEST.
 function gtst() {
-  gcap "🤖 TEST: $@"
+  gcap "🤖 TST: $@"
 }

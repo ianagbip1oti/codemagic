@@ -8,3 +8,4 @@ RUN curl -ssL https://services.gradle.org/distributions/gradle-6.0.1-bin.zip -o 
  && mv gradle-6.0.1 /opt/gradle \
  && ln -s /opt/gradle/bin/gradle /usr/bin/gradle
 
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/

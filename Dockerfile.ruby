@@ -1,7 +1,7 @@
 FROM codemagic:base
 
 RUN apt-get update \
- && apt-get install -y curl autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openjdk-8-jdk
+ && apt-get install -y curl autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev
 
 RUN git clone https://github.com/rbenv/rbenv.git /home/hacker/.rbenv \
  && echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/hacker/.bashrc \

@@ -1,5 +1,9 @@
 FROM codemagic:base
 
+RUN apt-get install -y wget apt-transport-https gnupg
+RUN wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | apt-key add -
+RUN echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb bullseye main" | tee /etc/apt/sources.list.d/adoptopenjdk.list
+
 RUN apt-get update \
  && apt-get install -y maven openjdk-8-jdk
 
