@@ -7,6 +7,8 @@ set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+set list listchars=tab:»-,trail:·
+
 set directory=~/.vim/swp//
 
 let g:solarized_termtrans=1
