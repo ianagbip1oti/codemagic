@@ -8,6 +8,8 @@ workspace=${2-~/codemagic}
 docker build -f Dockerfile.base . -t codemagic:base
 docker build -f Dockerfile.$image . -t codemagic:$image
 
+config_args="-v $workspace/.config:/home/hacker/.config"
+
 case $image in 
   java*)
     extra_args="-v $workspace/.m2:/home/hacker/.m2 -v $workspace/.gradle:/home/hacker/.gradle"
@@ -29,6 +31,7 @@ esac
 docker run -it \
   -v $workspace:/workspace \
   -e "TERM=xterm-256color" \
+  $config_args \
   $extra_args \
   --user=hacker \
   --hostname="$image.codemagic" \

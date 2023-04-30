@@ -1,15 +1,16 @@
 FROM debian:bullseye
 
-#RUN echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list.d/backports.list \
-RUN apt-get update
-
-RUN apt-get install -y unattended-upgrades \
+RUN apt-get update \
+ && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    autoconf bash-completion build-essential curl entr fzf git locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux vim
-
-RUN apt-get install -y python3 python3-pip \
- && pip3 install tsktsk
+    autoconf bash-completion build-essential curl entr fzf git libncurses-dev locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux
+ 
+RUN git clone --depth 1 --branch v9.0.1443 https://github.com/vim/vim.git /usr/local/src/vim \
+ && cd /usr/local/src/vim \
+ && ./configure \
+ && make \
+ && make install
 
 ENV EDITOR=/usr/bin/vim
 
@@ -26,6 +27,8 @@ RUN mkdir -p /home/hacker/.vim \
  && chown hacker:hacker /home/hacker/.vim/swp \
  && mkdir -p /home/hacker/.vim/bundle/fzf/plugin \
  && cp /usr/share/doc/fzf/examples/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
+ && git clone --depth 1 https://github.com/github/copilot.vim.git \
+    /home/hacker/.vim/bundle/copilot.vim \
  && git clone --depth 1 https://github.com/junegunn/fzf.vim \
     /home/hacker/.vim/bundle/fzf.vim \
  && git clone --depth 1 https://github.com/itchyny/lightline.vim \
@@ -49,6 +52,9 @@ RUN git clone --depth 1 https://github.com/riobard/bash-powerline.git \
 RUN git clone --depth 1 https://github.com/gpakosz/.tmux.git \
     /home/hacker/.tmux \
  && ln -s -f .tmux/.tmux.conf /home/hacker/.tmux.conf
+
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+ && apt-get install -y nodejs
 
 COPY dotfiles/ /home/hacker/
 

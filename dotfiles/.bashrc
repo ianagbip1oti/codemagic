@@ -3,6 +3,7 @@
 set -o vi
 
 alias ls="ls --color"
+alias gl='git log --graph --oneline --decorate --all'
 
 git config --global credential.helper cache
 
