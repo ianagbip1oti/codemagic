@@ -1,0 +1,8 @@
+FROM codemagic:base
+
+RUN mkdir /home/hacker/.nvm
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | NVM_DIR="/home/hacker/.nvm" bash
+
+RUN echo "export NVM_DIR=\"/home/hacker/.nvm\"" >> /home/hacker/.bashrc \
+ && echo "[ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"" >> /home/hacker/.bashrc
