@@ -55,7 +55,8 @@ RUN git clone --depth 1 https://github.com/riobard/bash-powerline.git \
 
 RUN git clone --depth 1 https://github.com/gpakosz/.tmux.git \
     /home/hacker/.tmux \
- && ln -s -f .tmux/.tmux.conf /home/hacker/.tmux.conf
+ && sed -i '/_apply_plugins$/d' /home/hacker/.tmux/.tmux.conf \
+ && ln -s -f /home/hacker/.tmux/.tmux.conf /home/hacker/.tmux.conf
 
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
  && apt-get install -y nodejs
