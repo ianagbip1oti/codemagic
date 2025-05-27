@@ -11,6 +11,12 @@ set list listchars=tab:»-,trail:·
 
 set directory=~/.vim/swp//
 
+set autoread
+au FocusGained * :checktime
+au BufEnter * :checktime
+au CursorHold * :checktime
+au CursorHoldI * :checktime
+
 let g:solarized_termtrans=1
 
 set background=dark

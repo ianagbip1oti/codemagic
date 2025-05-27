@@ -23,9 +23,6 @@ case $image in
   mkdocs)
     extra_args="-p 8000:8000"
     ;;
-  nvm)
-    extra_args="-p 8080:8080"
-    ;;
   docker)
     extra_args="-v /var/run/docker.sock:/var/run/docker.sock"
     ;;

@@ -4,8 +4,12 @@ RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    autoconf bash-completion build-essential curl entr fzf git libncurses-dev locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux
- 
+    autoconf bash-completion build-essential curl entr git libncurses-dev locales locales-all pkg-config procps ruby-dev silversearcher-ag sudo tmux
+
+RUN git clone --depth 1 --branch v0.56.0 https://github.com/junegunn/fzf.git /usr/local/src/fzf \
+ && /usr/local/src/fzf/install \
+ && ln -sf /usr/local/src/fzf/bin/fzf /usr/bin/fzf
+
 RUN git clone --depth 1 --branch v9.0.1443 https://github.com/vim/vim.git /usr/local/src/vim \
  && cd /usr/local/src/vim \
  && ./configure \
@@ -26,7 +30,7 @@ RUN mkdir -p /home/hacker/.vim \
  && mkdir -p /home/hacker/.vim/swp \
  && chown hacker:hacker /home/hacker/.vim/swp \
  && mkdir -p /home/hacker/.vim/bundle/fzf/plugin \
- && cp /usr/share/doc/fzf/examples/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
+ && cp /usr/local/src/fzf/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
  && git clone --depth 1 https://github.com/github/copilot.vim.git \
     /home/hacker/.vim/bundle/copilot.vim \
  && git clone --depth 1 https://github.com/junegunn/fzf.vim \
@@ -61,6 +65,6 @@ COPY dotfiles/ /home/hacker/
 RUN mkdir /workspace
 WORKDIR /workspace
 
-ENV LC_ALL en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
-CMD tmux
+CMD ["tmux"]
