@@ -1,11 +1,11 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update \
  && apt-get install -y unattended-upgrades \
  && unattended-upgrades -d \
  && apt-get install -y \
-    autoconf bash-completion build-essential curl entr git libncurses-dev locales locales-all \
-    python3 python3-pip python3-setuptools pkg-config procps ruby-dev silversearcher-ag sudo tmux
+    autoconf bash-completion build-essential curl git libncurses-dev locales locales-all \
+    pkg-config procps sudo tmux jq tree htop ripgrep bat fd-find
 
 RUN git clone --depth 1 --branch v0.56.0 https://github.com/junegunn/fzf.git /usr/local/src/fzf \
  && /usr/local/src/fzf/install \
@@ -17,13 +17,10 @@ RUN git clone --depth 1 --branch v9.0.1443 https://github.com/vim/vim.git /usr/l
  && make \
  && make install
 
-ENV EDITOR=/usr/bin/vim
+ENV EDITOR=/usr/local/bin/vim
 
 RUN useradd -ms /bin/bash hacker \
  && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
-
-RUN git config --global --add auto.ui true \
- && git config --global credential.helper 'cache --timeout 86400'
 
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
@@ -32,8 +29,6 @@ RUN mkdir -p /home/hacker/.vim \
  && chown hacker:hacker /home/hacker/.vim/swp \
  && mkdir -p /home/hacker/.vim/bundle/fzf/plugin \
  && cp /usr/local/src/fzf/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
- && git clone --depth 1 https://github.com/github/copilot.vim.git \
-    /home/hacker/.vim/bundle/copilot.vim \
  && git clone --depth 1 https://github.com/junegunn/fzf.vim \
     /home/hacker/.vim/bundle/fzf.vim \
  && git clone --depth 1 https://github.com/itchyny/lightline.vim \
@@ -62,12 +57,17 @@ RUN git clone --depth 1 https://github.com/gpakosz/.tmux.git \
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
  && apt-get install -y nodejs
 
-RUN su - hacker -c "curl -LsSf https://aider.chat/install.sh | sh"
+RUN su - hacker -c "mkdir -p /home/hacker/.npm-global \
+                && npm config set prefix '/home/hacker/.npm-global' \
+                && npm install -g @anthropic-ai/claude-code"
 
-RUN su - hacker -c "/home/hacker/.local/share/uv/tools/aider-chat/bin/python -m pip install --upgrade --upgrade-strategy only-if-needed aider-chat[playwright]" \
- && su - hacker -c "/home/hacker/.local/share/uv/tools/aider-chat/bin/python -m playwright install --with-deps chromium"
+RUN su - hacker -c "git config --global --add auto.ui true \
+ && git config --global credential.helper 'cache --timeout 86400' \
+ && git config --global merge.conflictStyle zdiff3"
 
 COPY dotfiles/ /home/hacker/
+
+RUN chown hacker:hacker /home/hacker/.claude
 
 RUN mkdir /workspace
 WORKDIR /workspace
