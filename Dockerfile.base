@@ -20,13 +20,13 @@ RUN git clone --depth 1 --branch v9.0.1443 https://github.com/vim/vim.git /usr/l
 ENV EDITOR=/usr/local/bin/vim
 
 RUN useradd -ms /bin/bash hacker \
- && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers
+ && echo 'hacker ALL=NOPASSWD: ALL' > /etc/sudoers.d/hacker \
+ && chmod 0440 /etc/sudoers.d/hacker
 
 RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 --branch v2.4 https://github.com/tpope/vim-pathogen \
     /home/hacker/.vim \
  && mkdir -p /home/hacker/.vim/swp \
- && chown hacker:hacker /home/hacker/.vim/swp \
  && mkdir -p /home/hacker/.vim/bundle/fzf/plugin \
  && cp /usr/local/src/fzf/plugin/fzf.vim /home/hacker/.vim/bundle/fzf/plugin \
  && git clone --depth 1 https://github.com/junegunn/fzf.vim \
@@ -44,17 +44,21 @@ RUN mkdir -p /home/hacker/.vim \
  && git clone --depth 1 https://github.com/tpope/vim-sleuth.git \
     /home/hacker/.vim/bundle/vim-sleuth \
  && git clone --depth 1 https://github.com/tpope/vim-unimpaired.git \
-    /home/hacker/.vim/bundle/vim-unimpaired
+    /home/hacker/.vim/bundle/vim-unimpaired \
+ && chown -R hacker:hacker /home/hacker/.vim
 
 RUN git clone --depth 1 https://github.com/riobard/bash-powerline.git \
-    /home/hacker/.bash-powerline
+    /home/hacker/.bash-powerline \
+ && chown -R hacker:hacker /home/hacker/.bash-powerline
 
 RUN git clone --depth 1 https://github.com/gpakosz/.tmux.git \
     /home/hacker/.tmux \
  && sed -i '/_apply_plugins$/d' /home/hacker/.tmux/.tmux.conf \
- && ln -s -f /home/hacker/.tmux/.tmux.conf /home/hacker/.tmux.conf
+ && ln -s -f /home/hacker/.tmux/.tmux.conf /home/hacker/.tmux.conf \
+ && chown -R hacker:hacker /home/hacker/.tmux \
+ && chown hacker:hacker /home/hacker/.tmux.conf
 
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
  && apt-get install -y nodejs
 
 RUN su - hacker -c "mkdir -p /home/hacker/.npm-global \
@@ -67,7 +71,8 @@ RUN su - hacker -c "git config --global --add auto.ui true \
 
 COPY dotfiles/ /home/hacker/
 
-RUN chown hacker:hacker /home/hacker/.claude
+RUN chown -R hacker:hacker /home/hacker/.claude /home/hacker/.config \
+ && chown hacker:hacker /home/hacker/.bashrc /home/hacker/.vimrc /home/hacker/.emoji-log /home/hacker/.tmux.conf.local /home/hacker/.claude.json
 
 RUN mkdir /workspace
 WORKDIR /workspace

@@ -3,5 +3,4 @@ FROM codemagic:base
 RUN apt-get update \
  && apt-get install -y libclang-dev libssl-dev
 
-RUN chown hacker:hacker /home/hacker/.bashrc \
- && su - hacker -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+RUN su - hacker -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
