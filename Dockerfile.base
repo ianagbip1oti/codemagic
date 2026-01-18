@@ -66,7 +66,6 @@ RUN su - hacker -c "mkdir -p /home/hacker/.npm-global \
                 && npm install -g @anthropic-ai/claude-code"
 
 RUN su - hacker -c "git config --global --add auto.ui true \
- && git config --global credential.helper 'cache --timeout 86400' \
  && git config --global merge.conflictStyle zdiff3"
 
 COPY dotfiles/ /home/hacker/

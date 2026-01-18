@@ -28,6 +28,7 @@ esac
 
 docker run -it \
   -v $workspace:/workspace \
+  -v $workspace/.ssh:/home/hacker/.ssh \
   -e "TERM=xterm-256color" \
   $extra_args \
   --user=hacker \
