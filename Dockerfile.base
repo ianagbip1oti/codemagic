@@ -58,12 +58,7 @@ RUN git clone --depth 1 https://github.com/gpakosz/.tmux.git \
  && chown -R hacker:hacker /home/hacker/.tmux \
  && chown hacker:hacker /home/hacker/.tmux.conf
 
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
- && apt-get install -y nodejs
-
-RUN su - hacker -c "mkdir -p /home/hacker/.npm-global \
-                && npm config set prefix '/home/hacker/.npm-global' \
-                && npm install -g @anthropic-ai/claude-code"
+RUN su - hacker -c "curl -fsSL https://claude.ai/install.sh | bash"
 
 RUN su - hacker -c "git config --global --add auto.ui true \
  && git config --global merge.conflictStyle zdiff3"
